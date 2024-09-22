@@ -1,7 +1,3 @@
-# Hola, Bere y Emi! Aquí pondré algunos puntos de la tarea, siéntanse libres de cambiar cualquier cosa o decirme si algo
-# no se entiende o no está correcto. Iré explicando de la forma más detallada posible para que se entienda lo que voy
-# haciendo. ¡Sí podemos!
-
 # Este comando pertenece al Paso 4 de la Consigna: importar el módulo random.
 import random
 
