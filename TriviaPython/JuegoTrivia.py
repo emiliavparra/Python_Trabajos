@@ -51,14 +51,14 @@ print("\nLee cada pregunta y responde SOLAMENTE con el NÚMERO del inciso que cr
 # Organiza las preguntas y respuestas en una estructura de datos:
 # Usa tuplas para guardar cada pregunta junto con su respuesta correcta. Coloca estas tuplas dentro de una lista.
 preguntas_respuestas = [
-    ("¿Qué es Python? 1) Un lenguaje de programación. 2) Un tipo de serpiente. 3) Un tipo de comando.", 1),
-    ("¿Qué es una variable en Python? 1) Un dato anidado. 2) Un espacio que almacena un valor. 3) Un diccionario.", 2),
-    ("¿Cuál es un dato básico en Python? 1) n\. 2) #. 3) int.", 3),
-    ("¿Cómo se define una lista en Python? 1) (). 2) []. 3) "".", 2),
-    ("¿Cómo se define una lista inmutable en Python? 1) (). 2) []. 3) *.", 1),
-    ("En Python las Tuplas son Mutables. 1) Verdadero. 2) Falso.", 2),
-    ("¿Para qué se utiliza print() en Python? 1) Para conectar tu impresora. 2) Para hacer una lista. 3) Muestra información en la consola.", 3),
-    ("¿Cuál es el operador de asignación en Python? 1) =. 2) +. 3) *.", 1)
+    ("¿Qué es Python?\n 1) Un lenguaje de programación. \n 2) Un tipo de serpiente. \n 3) Un tipo de comando.", 1),
+    ("¿Qué es una variable en Python?\n 1) Un dato anidado. \n 2) Un espacio que almacena un valor. \n 3) Un diccionario.", 2),
+    ("¿Cuál es un dato básico en Python?\n 1)'n\' \n 2) # \n 3) int", 3),
+    ("¿Cómo se define una lista en Python?\n 1) () \n 2) [] \n 3) {} ", 2),
+    ("¿Cómo se define una lista inmutable en Python?\n 1) () \n 2) [] \n 3) *", 1),
+    ("En Python las Tuplas son Mutables.\n 1) Verdadero. \n 2) Falso.", 2),
+    ("¿Para qué se utiliza print() en Python?\n 1) Para conectar tu impresora. \n 2) Para hacer una lista. \n 3) Muestra información en la consola.", 3),
+    ("¿Cuál es el operador de asignación en Python?\n1) = \n2) + \n3) *", 1)
 ]
 
 # Mezclar las preguntas para que aparezcan en un orden diferente cada vez que jueguen:
@@ -67,6 +67,7 @@ random.shuffle(preguntas_respuestas)
 # print(preguntas_respuestas) # Nos muestra las preguntas y respuestas cada vez en un orden diferente.
 
 # Paso 6: Mostrar las preguntas al jugador.
+
 # ATENCIÓN: En este paso falta "Controlar los intentos fallidos del jugador".
 
 # Contador de respuestas correctas
@@ -96,4 +97,74 @@ for pregunta, respuesta_correcta in preguntas_respuestas:
         print(f"Incorrecto. El inciso correcto es el: {
               respuesta_correcta}. Te queda {errores_consecutivos} intentos\n")
 
+
 # Paso 8: Crear Funciones.
+
+# Función de bienvenida que solicita el nombre y la edad del usuario
+
+
+def bienvenida():
+    print("¡Hola!\n Antes de comenzar por favor ingresa la siguiente información personal:")
+    nombre = input("Nombre: ")
+    edad = int(input("Edad: "))
+    return nombre, edad
+
+# Función para validar la edad del usuario
+
+
+def validar_edad(edad):
+    edad_minima = 18
+    if edad >= edad_minima:
+        print("\n \x1b[1m¡Bienvenida al juego de Trivia en Python!\x1b[0m")
+        print("Esperamos que aprendas y también te diviertas al responder estas preguntas de Programación.")
+        print("El juego funcionará de la siguiente manera: te presentaremos una serie de preguntas que retarán tus conocimientos de Programación en Python.")
+        print("Las preguntas serán de opción múltiple y tu ingresarás el inciso que creas que sea correcto.")
+        print("\nLee detenidamente cada pregunta y tómate tu tiempo para responder.")
+        print("Al final, podrás verificar cuántas preguntas acertaste.")
+        print("Te deseamos el mejor de los éxitos.\n¡Comencemos!")
+        print(
+            "\n \x1b[1mLee cada pregunta y responde SOLAMENTE con el NÚMERO del inciso que creas correcto:\x1b[0m \n")
+        return True
+    else:
+        print(
+            "No cumples con la edad mínima para participar en este juego.\n Lo siento :c ")
+        return False
+
+# Función que selecciona las preguntas y verifica las respuestas
+
+
+def juego_trivia(preguntas_respuestas):
+    aciertos = 0
+    errores_consecutivos = 3
+
+    for pregunta, respuesta_correcta in preguntas_respuestas:
+        if errores_consecutivos == 0:
+            print('Te quedaste sin intentos. Vuelve a empezar')
+            break
+        print(pregunta)
+        tu_respuesta = int(input("\nTu respuesta es: "))
+
+        if tu_respuesta == respuesta_correcta:
+            print("¡Correcto!\n")
+            aciertos += 1
+            errores_consecutivos = 3
+        else:
+            errores_consecutivos -= 1
+            print(f"Incorrecto. El inciso correcto es el: {
+                  respuesta_correcta}. Te queda {errores_consecutivos} intentos\n")
+
+    return aciertos
+
+
+# Punto 9:
+# Al finalizar el juego, muestra cuántas respuestas correctas obtuvo el jugador.
+# Utiliza print() para mostrar el puntaje final del jugador.
+# Agradece al jugador por participar y despide el juego de manera amigable.`
+
+nombre, edad = bienvenida()
+if validar_edad(edad):
+    random.shuffle(preguntas_respuestas)  # Mezcla las preguntas aleatoriamente
+    puntaje = juego_trivia(preguntas_respuestas)
+    print(f"\n{nombre}, obtuviste {puntaje} puntos de {
+          len(preguntas_respuestas)} posibles.")
+    print("\x1b[1m¡Muchas gracias por haber participado en este juego, esperamos verte de nuevo!\x1b[0m")
