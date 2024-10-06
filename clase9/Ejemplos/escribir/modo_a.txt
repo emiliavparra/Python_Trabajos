@@ -1,0 +1,6 @@
+Hola chicas!
+Como estan?
+Hola soy EmiEste texto se agrego al final del archivo usando el modo 'a'.
+Todo el contenido previo no fue eliminado.
+Este texto se agrego al final del archivo usando el modo 'a'.
+Todo el contenido previo no fue eliminado.
